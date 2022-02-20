@@ -27,7 +27,8 @@
             "tsConfig": "projects/my-first-app/tsconfig.app.json",
             "assets": [
               "projects/my-first-app/src/favicon.ico",
-              "projects/my-first-app/src/assets"
+              "projects/my-first-app/src/assets",
+              "projects/my-first-app/src/manifest.webmanifest"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -35,7 +36,9 @@
             ],
             "scripts": [
               "node_modules/dw-navbar/dw-navbar.js"
-            ]
+            ],
+            "serviceWorker": true,
+            "ngswConfigPath": "projects/my-first-app/ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -97,7 +100,8 @@
             "karmaConfig": "projects/my-first-app/karma.conf.js",
             "assets": [
               "projects/my-first-app/src/favicon.ico",
-              "projects/my-first-app/src/assets"
+              "projects/my-first-app/src/assets",
+              "projects/my-first-app/src/manifest.webmanifest"
             ],
             "styles": [
               "projects/my-first-app/src/styles.css"

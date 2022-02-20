@@ -11,11 +11,15 @@ import { UsuariosModule } from 'projects/usuarios/src/lib/usuarios.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DwAuthorizationModule } from 'projects/dw-authorization/src/public-api';
 import { JwtHttpInterceptor } from 'projects/dw-authorization/src/lib/interceptors/Jwt-http.interceptor';
+import { InicioComponent } from './inicio/inicio.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
+    InicioComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,13 @@ import { JwtHttpInterceptor } from 'projects/dw-authorization/src/lib/intercepto
     NgbModule,
     UsuariosModule,
     AlquilerModule,
-    DwAuthorizationModule
+    DwAuthorizationModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: 
   [
