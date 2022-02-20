@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Usuario } from './usuario';
 import { UsuariosService } from './usuarios.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { UsuariosService } from './usuarios.service';
 })
 export class UsuariosComponent implements OnInit {
   searchText:string='';
+  @Output() Selected = new EventEmitter<Usuario>();
   usuarios =  
   [
     {"identificacion":"78979", "nombre":"Boris", "rol":"piloto"},  
@@ -20,4 +22,9 @@ export class UsuariosComponent implements OnInit {
     this.usuarioService.get().subscribe(u=> this.usuarios=u);
   }
 
+  seleccionar(usuario: Usuario) {
+    this.Selected.emit(usuario);
+    alert('click en fila');
+  }
+  
 }

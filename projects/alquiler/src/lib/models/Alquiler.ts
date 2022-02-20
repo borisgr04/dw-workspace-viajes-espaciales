@@ -1,4 +1,4 @@
-import { Pasajero } from "./pasajero";
+import { Pasajero } from "./Pasajero";
 
 export interface Alquiler {
     destino: string;

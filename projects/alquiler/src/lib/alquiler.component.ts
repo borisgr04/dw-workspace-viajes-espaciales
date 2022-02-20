@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UsuariosComponent } from 'projects/usuarios/src/public-api';
 import { AlquilerService } from './alquiler.service';
+import { ModalConsultaUsuariosComponent } from './modal/modal-consulta-usuarios/modal-consulta-usuarios.component';
 import { Alquiler } from './models/Alquiler';
+import { Pasajero } from './models/Pasajero';
 
 @Component({
   selector: 'alquiler',
@@ -26,7 +30,8 @@ export class AlquilerComponent implements OnInit {
 
   constructor(
     private alquilerService: AlquilerService,
-    private formBuilder: FormBuilder) { }
+    private modalService: NgbModal
+    ) { }
 
   ngOnInit() {
   
@@ -52,8 +57,9 @@ export class AlquilerComponent implements OnInit {
     this.alquilerService.post(this.alquiler).subscribe(p => {
       if (p != null) {
 
-        /*const messageBox = this.modalService.open(AlertModalComponent)
-        messageBox.componentInstance.title = "Resultado Operación";
+        //const messageBox = this.modalService.open(AlertModalComponent);
+        
+        /*messageBox.componentInstance.title = "Resultado Operación";
         messageBox.componentInstance.message = 'Persona creada!!! :-)';*/
 
         this.alquiler = p;
@@ -61,10 +67,7 @@ export class AlquilerComponent implements OnInit {
     });
   }
 
-  onChangeSexo(value:string)
-  {
-    console.log("nuevo valor del select " + value);
-  }
+
 
   onReset()
   {
@@ -72,7 +75,16 @@ export class AlquilerComponent implements OnInit {
   }
  
   onFind(){
-    alert ("Busqueda realizada");
+    const modal = this.modalService.open(ModalConsultaUsuariosComponent);//.result.then((pasajero) => this.agregarPasajero(pasajero));
+    //modal.componentInstance.title = "Seleccione pasajeros";
+    //modal.result.then((pasajero) => this.agregarPasajero(pasajero));
+    //modal.componentInstance.EventEmitter
+    //modal.componentInstance.PasajeroSeleccionado.subscribe(pasajero=>this.agregarPasajero(pasajero));
+  }
+
+  agregarPasajero(pasajero: Pasajero) {
+    alert('agregar pasajero');
+    alert(JSON.stringify(pasajero));
   }
 
 }
