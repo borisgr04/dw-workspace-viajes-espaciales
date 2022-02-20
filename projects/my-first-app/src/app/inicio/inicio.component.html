@@ -14,7 +14,10 @@
             <li><b>Interceptores</b>: Para simular el envío del token</li>
         </ul>
     </div>
-
+    </div>
+</div>
+    <br>
+    <div class="card" >
     <div class="card-body">
         <h5 class="card-title">Funcionalidades implementadas</h5>
         <h6 class="card-subtitle mb-2 text-muted">Implementación parcial de funcionalidades. </h6>
@@ -25,14 +28,51 @@
                  <br/>Rol admin, solo podra consultar usuarios,
                  <br/>Rol pasajero, no se alcanzo a implementar alguna consulta. solo puede cerrar sesión (logout)
               </li> 
-              <li><b>Login</b>: Para creación de módulos publicables en npm y reutilizables en otros proyectos angular  </li>
-              <li><b>Inicio</b>: Para creación de elementos publicables en npm y reutilizables en cualquier proyecto web (javascript, react.js, vue.js, etc)</li>
-              <li><b>Consultar usuarios</b>: Para creación de página progresiva.  </li> 
-              <li><b>Registrar alquiler de aeronave:</b> Para manejo de programación reactiva - manejo de observables</li> 
-              <li><b>Logout:</b> </li>
+              <li><b>Login</b>: Simulación del inicio de sesión con Api simulada en memoria  </li>
+              <li><b>Inicio</b>: Presenta esta información </li>
+              <li><b>Consultar usuarios</b>: Muestra la consulta de usuarios al administrador.  </li> 
+              <li><b>Registrar alquiler de aeronave:</b> Permite por medio de un formulario reactivo registrar datos, 
+                comunicarse con el componente de consulta de usuarios para que solo permita seleccionar usuarios tipo pasajeros.
+                <p>
+                Tambien tiene instalado un componente desplegado en Npm llamado dw-toolbar (que contiene los botones guardar y cancelar).
+                <a href="https://www.npmjs.com/package/dw-toolbar">dw-toolbar</a>
+                </p>
+                <p>        
+                Este componente se implemento como una libreria angular y al estar desplegado en npm puede ser instalado en cualquier proyecto angular. 
+                </p>    
+                Este componente se encapsulo dentro del componente  <a href="https://www.npmjs.com/package/dw-ng-toolbar">dw-ng-toolbar</a> el cual es Angular Elements,
+                que permitió ser públicado como Componente Web que puede ser instalado en cualqueir aplicación web basada en javascript. 
+                <p>    
+                </p>        
+                En ambos estilos library y elements tiene publico los manejadores para los eventos de los botones que tiene implementado. 
+                <p>    
+                Al registrar el alquier se manda un mensaje de satisfacción, pero no se almacena dicha información.
+                </p>    
+                <p>    
+                El sistema no permite agregar más de una vez a un pasajero dentro del mismo alquiler de aeronave.
+                </p>    
+             </li> 
+              <li><b>Logout:</b> Cierra sesión y por medio del control de un observable permite actualizar las opciones del menú. </li>
+          </ul>
+      </div>
+      <hr>
+    </div>
+</div>
+<br>
+<div class="card" >
+      <div class="card-body">
+        <h5 class="card-title">Usuarios de prueba</h5>
+        <h6 class="card-subtitle mb-2 text-muted"> Usuarios de prueba para validar las funcionalidades implementadas </h6>
+        <div class="card-text">
+          Todos los usuarios tienen la contraseña 123
+          <ul>
+                <li>Identificación: 1234 con Rol Piloto</li>
+                <li>Identificación: 4321 con Rol pasajero</li>
+                <li>Identificación: 5678 con Rol pasajero</li>
+                <li>Identificación: 8765 con Rol admin</li>
           </ul>
       </div>
       
       
     </div>
-  </div>
+  
