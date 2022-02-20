@@ -3,9 +3,12 @@
       <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <usuarios-consulta (Selected)="select($event)" ></usuarios-consulta>
+      <div class="alert alert-primary" role="alert">
+        Presione click a cada Pasajero que desea invitar a su vuelo.
+      </div>
+        <usuarios-consulta (Selected)="select($event)" [soloPasajeros]="true"  ></usuarios-consulta>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
     </div>
 

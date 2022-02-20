@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UsuariosComponent } from 'projects/usuarios/src/public-api';
+import { AlertModalComponent } from 'projects/dw-common/src/public-api';
 import { AlquilerService } from './alquiler.service';
 import { ModalConsultaUsuariosComponent } from './modal/modal-consulta-usuarios/modal-consulta-usuarios.component';
 import { Alquiler } from './models/Alquiler';
@@ -13,13 +13,13 @@ import { Pasajero } from './models/Pasajero';
   styles: [
   ]
 })
-export class AlquilerComponent implements OnInit {
-  
+export class AlquilerComponent implements OnInit, AfterViewInit {
+ 
   alquiler: Alquiler =
   {
     destino:"", salida:new Date(), llegada:new Date(), pasajero:[]
   };
-  formGroup: FormGroup = new FormGroup(
+ formGroup: FormGroup = new FormGroup(
     {
       destino: new FormControl(this.alquiler.destino, [Validators.required]),
       salida:new FormControl(this.alquiler.salida, [Validators.required]),
@@ -27,17 +27,23 @@ export class AlquilerComponent implements OnInit {
     }
   );
   submitted = false;
+  pasajeros=[{identificacion:"", nombre:""}];
 
   constructor(
     private alquilerService: AlquilerService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private elementRef:ElementRef
     ) { }
 
   ngOnInit() {
-  
+    this.pasajeros=[];
   }
 
-
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.querySelector('#navbar1').addEventListener('onSave', this.onSubmit.bind(this));
+    this.elementRef.nativeElement.querySelector('#navbar1').addEventListener('onCancel', this.onReset.bind(this));
+  }
+  
   get control() {
     return this.formGroup.controls;
   }
@@ -54,17 +60,13 @@ export class AlquilerComponent implements OnInit {
   add() {
     this.alquiler = this.formGroup.value;
     this.alquiler.pasajero=[]
-    this.alquilerService.post(this.alquiler).subscribe(p => {
+    alert('Se almacena la información del vuelo');
+    /*this.alquilerService.post(this.alquiler).subscribe(p => {
       if (p != null) {
-
-        //const messageBox = this.modalService.open(AlertModalComponent);
-        
-        /*messageBox.componentInstance.title = "Resultado Operación";
-        messageBox.componentInstance.message = 'Persona creada!!! :-)';*/
 
         this.alquiler = p;
       }
-    });
+    });*/
   }
 
 
@@ -72,19 +74,28 @@ export class AlquilerComponent implements OnInit {
   onReset()
   {
     this.submitted = false;
+    this.pasajeros=[];
   }
  
   onFind(){
-    const modal = this.modalService.open(ModalConsultaUsuariosComponent);//.result.then((pasajero) => this.agregarPasajero(pasajero));
-    //modal.componentInstance.title = "Seleccione pasajeros";
-    //modal.result.then((pasajero) => this.agregarPasajero(pasajero));
-    //modal.componentInstance.EventEmitter
-    //modal.componentInstance.PasajeroSeleccionado.subscribe(pasajero=>this.agregarPasajero(pasajero));
+    const modalRef = this.modalService.open(ModalConsultaUsuariosComponent);//.result.then((pasajero) => this.agregarPasajero(pasajero));
+    modalRef.componentInstance.title = "Seleccione pasajeros";
+    modalRef.componentInstance.Selected.subscribe(($pasajero:Pasajero) => this.agregarPasajero($pasajero));
+
   }
 
   agregarPasajero(pasajero: Pasajero) {
-    alert('agregar pasajero');
-    alert(JSON.stringify(pasajero));
+    
+    let resultado =  this.pasajeros.filter(p => p.identificacion == pasajero.identificacion);
+    if(resultado.length==0)
+    {
+      this.pasajeros.push(pasajero);
+    }
+    else
+    {
+      alert('El pasajero ya se encuentra agregado al vuelo actual!');
+    }
+    
   }
 
 }

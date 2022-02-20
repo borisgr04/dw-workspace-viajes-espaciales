@@ -1,0 +1,11 @@
+{
+  "name": "dw-ng-toolbar",
+  "version": "1.0.0",
+  "description": "Toolbar estar reutilizable en cualquier proyecto tipo JS (React, Angular, Vuel, Javascript,..)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": ["elements.js", "styles.css"],
+  "author": "Boris González Rivera",
+  "license": "ISC"
+}

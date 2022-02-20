@@ -6,8 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavBarComponent {
-  title = 'dw-navbar';
-
+  @Input() title: string = 'dw-navbar- Componente Web';
   @Input() readonly:boolean = true;
   @Input() data:any;
   @Output() onSave = new EventEmitter();

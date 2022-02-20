@@ -10,9 +10,21 @@
         "dist/alquiler/alquiler",
         "dist/alquiler"
       ],
+      "dw-authorization": [
+        "dist/dw-authorization/dw-authorization",
+        "dist/dw-authorization"
+      ],
+      "dw-common": [
+        "dist/dw-common/dw-common",
+        "dist/dw-common"
+      ],
       "dw-pagination": [
         "dist/dw-pagination/dw-pagination",
         "dist/dw-pagination"
+      ],
+      "dw-toolbar": [
+        "dist/dw-toolbar/dw-toolbar",
+        "dist/dw-toolbar"
       ],
       "usuarios": [
         "dist/usuarios/usuarios",

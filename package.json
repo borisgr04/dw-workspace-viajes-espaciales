@@ -8,7 +8,11 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:navbar": "ng build --project dw-navbar  --output-hashing none && node navbar-build.js",
-    "build:pagination": "ng build --project dw-pagination  "
+    "build:pagination": "ng build --project dw-pagination  ",
+    "build:toolbar": "ng build --project dw-ng-toolbar  --output-hashing none && node toolbar-build.js",
+    "build:dw-ng-toolbar0": "ng build --project dw-ng-toolbar --output-hashing none && npm run pack:dw-ng-toolbar && cp projects/dw-ng-toolbar/package.json dist/dw-ng-toolbar",
+    "pack:dw-ng-toolbar0": "cat ./dist/dw-ng-toolbar/{runtime,polyfills,main}-es5.js > dist/dw-ng-toolbar/dw-ng-toolbar.js && ls -lah dist/dw-ng-toolbar/dw-ng-toolbar.js",
+    "build:dw-toolbar": "ng build --project dw-toolbar"
   },
   "private": true,
   "dependencies": {
@@ -25,7 +29,9 @@
     "@ng-bootstrap/ng-bootstrap": "^12.0.0",
     "@popperjs/core": "^2.10.2",
     "bootstrap": "^5.1.3",
-    "dw-navbar": "^1.0.0",
+    "dw-navbar": "^0.0.2",
+    "dw-toolbar": "^0.0.2",
+    "dw-toolbar-npm": "^0.0.1",
     "jw-paginate": "^1.0.4",
     "moment": "^2.29.1",
     "rxjs": "~7.5.0",

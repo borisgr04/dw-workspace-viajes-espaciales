@@ -4,22 +4,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UsuariosModule } from 'projects/usuarios/src/public-api';
-import { AlquilerModule } from 'projects/alquiler/src/public-api';
 
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { AlquilerModule } from 'projects/alquiler/src/lib/alquiler.module';
+import { UsuariosModule } from 'projects/usuarios/src/lib/usuarios.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DwAuthorizationModule } from 'projects/dw-authorization/src/public-api';
+import { JwtHttpInterceptor } from 'projects/dw-authorization/src/lib/interceptors/Jwt-http.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavMenuComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     UsuariosModule,
-    AlquilerModule
+    AlquilerModule,
+    DwAuthorizationModule
   ],
-  providers: [],
+  providers: 
+  [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

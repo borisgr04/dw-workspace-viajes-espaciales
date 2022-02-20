@@ -8,7 +8,7 @@ import { Usuario } from './usuario';
 })
 export class UsuariosService {
 
-  private heroesUrl = 'api/usuarios';  // URL to web api
+  private apiUrl = 'api/usuarios';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,7 +19,15 @@ export class UsuariosService {
 
     /** GET heroes from the server */
     get(): Observable<Usuario[]> {
-      return this.http.get<Usuario[]>(this.heroesUrl)
+      return this.http.get<Usuario[]>(this.apiUrl)
+        .pipe(
+          tap(_ => this.log('fetched usuarios')),
+          catchError(this.handleError<Usuario[]>('get', []))
+        );
+    }
+
+    getByRol(rol:string): Observable<Usuario[]> {
+      return this.http.get<Usuario[]>(`${this.apiUrl}?rol=${rol}`)
         .pipe(
           tap(_ => this.log('fetched usuarios')),
           catchError(this.handleError<Usuario[]>('get', []))

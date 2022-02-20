@@ -1,3 +1,5 @@
+<dw-navbar id="navbar1" [title]="'Componente-Web'"  > </dw-navbar>
+
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
@@ -27,14 +29,42 @@
             <div *ngIf="control['llegada'].errors['required']">Se require la llegada </div>
           </div>
         </div>
+       <hr>
+       <h3>Pasajeros del vuelo intergaláctico</h3>
+       <div >
+        <button class="btn btn-primary mr-1"  (click)="onFind()" >Agregar pasajeros</button>
+       </div>
        
-        <button class="btn btn-primary mr-1"  (click)="onFind()" >Buscar pasajeros</button>
+       <div class="table-responsive">
+        <table class="table table-striped caption-top table-hover" *ngIf='pasajeros && pasajeros.length'>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Identificación</th>
+              <th scope="col">Nombre </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pasajero of pasajeros; index as i " >
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ pasajero.identificacion }} </td>
+              <td>{{ pasajero.nombre }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div class="text-center">
-          <!--[disabled]="formGroup.invalid"-->
-          <button class="btn btn-primary mr-1" (click)="onSubmit()"  >Registrar</button>
-          <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
-        </div>
+     
+        <hr/>
+              
+        <div class="card center" style="width: 18rem;">
+          <div class="card-body">
+          <h5 class="card-title">Libreria Angular instalado con Npm</h5>
+          <dw-toolbar id="toolbarAlquiler"    
+             title="Toolbar desarrollo propio instalado desde npm"
+                  (onSave)="onSubmit()" (onCancel)="onReset()"    ></dw-toolbar>
+          </div>
+      </div>
       </form>
     </div>
   </div>

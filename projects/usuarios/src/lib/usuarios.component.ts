@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Usuario } from './usuario';
 import { UsuariosService } from './usuarios.service';
 
@@ -10,21 +10,28 @@ import { UsuariosService } from './usuarios.service';
 })
 export class UsuariosComponent implements OnInit {
   searchText:string='';
+  @Input() soloPasajeros:boolean=false;
   @Output() Selected = new EventEmitter<Usuario>();
   usuarios =  
   [
-    {"identificacion":"78979", "nombre":"Boris", "rol":"piloto"},  
+    {identificacion:"", nombre:"", rol:"", password:""},  
   ];
   
-  constructor(private usuarioService: UsuariosService,) { }
+  constructor(private usuarioService: UsuariosService) { }
 
   ngOnInit(): void {
-    this.usuarioService.get().subscribe(u=> this.usuarios=u);
+    if(this.soloPasajeros)
+    {
+      this.usuarioService.getByRol('pasajero').subscribe(u=> this.usuarios=u);
+    }
+    else
+    {
+      this.usuarioService.get().subscribe(u=> this.usuarios=u);
+    }
   }
 
   seleccionar(usuario: Usuario) {
     this.Selected.emit(usuario);
-    alert('click en fila');
   }
   
 }

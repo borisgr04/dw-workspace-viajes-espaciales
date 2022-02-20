@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const concat = require('concat');
-const package = require('./package.json');
+const package = require('./projects/dw-navbar/package.json');
 
 (async function build() {
   const filesC = [
