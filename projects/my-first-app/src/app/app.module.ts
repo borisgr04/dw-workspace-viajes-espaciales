@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsuariosModule } from 'projects/usuarios/src/public-api';
+import { AlquilerModule } from 'projects/alquiler/src/public-api';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { UsuariosModule } from 'projects/usuarios/src/public-api';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    UsuariosModule
+    UsuariosModule,
+    AlquilerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h2>Registro de Personas</h2>
+      <form [formGroup]="formGroup">
+        <div class="form-group">
+          <label>Destino</label>
+          <input type="text" name="destino" formControlName="destino" class="form-control" [ngClass]="{ 'is-invalid': submitted && control['destino'].errors}" />
+          <div *ngIf="submitted && control['destino'].errors"  class="invalid-feedback">
+            <div *ngIf="control['destino'].errors['required']">Se require el destino </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label>Salida</label>
+          <input type="date" name="salida" formControlName="salida" class="form-control" [ngClass]="{ 'is-invalid':  submitted && control['salida'].errors}" />
+          <div *ngIf ="submitted && control['salida'].errors"  class="invalid-feedback">
+            <div *ngIf="control['salida'].errors['required']">Se require la salida </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Llegada</label>
+          <input type="date" name="llegada" formControlName="salida" class="form-control" [ngClass]="{ 'is-invalid':  submitted && control['llegada'].errors}" />
+          <div *ngIf ="submitted && control['llegada'].errors"  class="invalid-feedback">
+            <div *ngIf="control['llegada'].errors['required']">Se require la llegada </div>
+          </div>
+        </div>
+       
+        <button class="btn btn-primary mr-1"  (click)="onFind()" >Buscar pasajeros</button>
+
+        <div class="text-center">
+          <!--[disabled]="formGroup.invalid"-->
+          <button class="btn btn-primary mr-1" (click)="onSubmit()"  >Registrar</button>
+          <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -271,6 +271,37 @@
           }
         }
       }
+    },
+    "alquiler": {
+      "projectType": "library",
+      "root": "projects/alquiler",
+      "sourceRoot": "projects/alquiler/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/alquiler/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/alquiler/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/alquiler/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/alquiler/src/test.ts",
+            "tsConfig": "projects/alquiler/tsconfig.spec.json",
+            "karmaConfig": "projects/alquiler/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "my-first-app"

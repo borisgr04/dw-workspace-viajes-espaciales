@@ -1,12 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from './usuarios.service';
-/*
-    template: `
-    <p>
-      usuarios works!
-    </p>
-  `,
-*/
 
 @Component({
   selector: 'usuarios-consulta',
