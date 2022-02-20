@@ -5,6 +5,16 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "dw-pagination": [
+        "dist/dw-pagination/dw-pagination",
+        "dist/dw-pagination"
+      ],
+      "usuarios": [
+        "dist/usuarios/usuarios",
+        "dist/usuarios"
+      ]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -16,6 +26,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
     "target": "es2017",
     "module": "es2020",
     "lib": [
